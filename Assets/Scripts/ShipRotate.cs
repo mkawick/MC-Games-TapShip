@@ -7,6 +7,7 @@ public class ShipRotate : MonoBehaviour
     [SerializeField]
     // Start is called before the first frame
     float rotationSpeed = 5.0f;
+    public bool isUnicorn = false;
     void Start()
     {
         
@@ -20,8 +21,14 @@ public class ShipRotate : MonoBehaviour
             Vector3 shipPos = this.transform.position;
             Vector3 mousePos = Input.mousePosition;
             Vector2 direction = Camera.main.ScreenToWorldPoint(mousePos) - shipPos;
-            float angle =( Mathf.Atan2(direction.y, direction.x) - Mathf.PI / 2)* Mathf.Rad2Deg;
+
+            float rad = Mathf.Atan2(direction.y, direction.x);
+            if(isUnicorn == false)// offset 90░
+                rad -= Mathf.PI / 2;
+            float angle =( rad )* Mathf.Rad2Deg;
+
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
 
         }
