@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ShipRotate : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    // Start is called before the first frame
+    float rotationSpeed = 5.0f;
     void Start()
     {
         
@@ -13,7 +15,6 @@ public class ShipRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float rotationSpeed = 5.0f;
         if (Input.GetMouseButton(0) == true)
         {
             Vector3 shipPos = this.transform.position;
